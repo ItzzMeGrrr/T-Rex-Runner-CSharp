@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>E:/Bhavin/Personal Projects/C#/ChromeDino/ChromeDino/Content/fonts.spritefont</SourceFile>
+  <SourceTime>2020-07-10T10:36:28.6652337+05:30</SourceTime>
+  <DestFile>E:/Bhavin/Personal Projects/C#/ChromeDino/ChromeDino/Content/bin/Windows/fonts.xnb</DestFile>
+  <DestTime>2020-07-14T18:37:20.6062564+05:30</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2018-12-08T22:05:54+05:30</ImporterTime>
+  <Processor>FontDescriptionProcessor</Processor>
+  <ProcessorTime>2018-12-08T22:05:54+05:30</ProcessorTime>
+  <Parameters>
+    <Key>PremultiplyAlpha</Key>
+    <Value>True</Value>
+  </Parameters>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
