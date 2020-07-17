@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Other/Cloud.png</SourceFile>
-  <SourceTime>2020-07-13T09:29:50.3498352+05:30</SourceTime>
-  <DestFile>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/bin/Windows/Content/Other/Cloud.xnb</DestFile>
-  <DestTime>2020-07-17T20:03:47.0555406+05:30</DestTime>
+  <SourceFile>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Stars/Star-1.png</SourceFile>
+  <SourceTime>2020-07-15T17:49:09.8759891+05:30</SourceTime>
+  <DestFile>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/bin/Windows/Content/Stars/Star-1.xnb</DestFile>
+  <DestTime>2020-07-17T20:03:47.1492906+05:30</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-24T03:25:52+05:30</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -51,3 +51,85 @@ E:\Bhavin\Personal Projects\C#\ChromeDino\ChromeDino\bin\Windows\x86\Debug\Conte
 E:\Bhavin\Personal Projects\C#\ChromeDino\ChromeDino\bin\Windows\x86\Debug\Content\Others\Cloud.xnb
 E:\Bhavin\Personal Projects\C#\ChromeDino\ChromeDino\bin\Windows\x86\Debug\Content\Others\Floor1.xnb
 E:\Bhavin\Personal Projects\C#\ChromeDino\ChromeDino\bin\Windows\x86\Debug\Content\Others\HI.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Cactus-0.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Crouching.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Floor1.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\fonts.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\HI.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Idle.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Number-0.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Number-1.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Number-2.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Number-3.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Number-4.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Number-5.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Number-6.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Number-7.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Number-8.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Number-9.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Running.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Stars\Star-0.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Stars\Star-1.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Stars\Star-2.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Fonts\fonts.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Dino\Crouching.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Dino\DeadDino.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Dino\Idle.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Dino\Running.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Others\Cloud.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Others\Floor1.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Others\HI.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Other\Cloud.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Other\Floor1.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Other\HI.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Cactuses\Small Cactuses\Cactus-0.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Cactuses\Small Cactuses\Cactus-1.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Cactuses\Small Cactuses\Cactus-2.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Cactuses\Small Cactuses\Cactus-3.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Numbers\Number-0.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Numbers\Number-1.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Numbers\Number-2.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Numbers\Number-3.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Numbers\Number-4.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Numbers\Number-5.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Numbers\Number-6.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Numbers\Number-7.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Numbers\Number-8.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Numbers\Number-9.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Cactuses\Big Cactuses\BigCactus-1.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Cactuses\Big Cactuses\BigCactus-2.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Cactuses\Big Cactuses\BigCactus-3.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Cactuses\Big Cactuses\BigCactus-4.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Cactuses\Big Cactuses\BigCactus-5.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Moon\Full Moon.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Moon\Moon-0.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Moon\Moon-1.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Moon\Moon-2.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Moon\Moon-3.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Moon\Moon-4.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Moon\Moon-5.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Birb\Birb-0.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Birb\Birb-1.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\ChromeDino.exe
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\ChromeDino.pdb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\MonoGame.Framework.dll
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\SharpDX.dll
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\SharpDX.XInput.dll
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\MonoGame.Framework.xml
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\SharpDX.xml
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\SharpDX.XInput.xml
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\obj\x86\Debug\ChromeDino.csprojAssemblyReference.cache
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\obj\x86\Debug\ChromeDino.csproj.CoreCompileInputs.cache
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\obj\x86\Debug\ChromeDino.csproj.CopyComplete
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\obj\x86\Debug\ChromeDino.exe
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\obj\x86\Debug\ChromeDino.pdb

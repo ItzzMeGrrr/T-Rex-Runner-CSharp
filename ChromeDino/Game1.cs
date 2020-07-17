@@ -102,18 +102,22 @@ namespace ChromeDino
             Content.RootDirectory = "Content";
             Window.Title = "T Rex Runner";
             IsMouseVisible = false;
-            MainForm = (Form)Form.FromHandle(Window.Handle);
+            MainForm = (Form)Control.FromHandle(Window.Handle);
             //Window.AllowUserResizing = true;
             score = 0;
             drawAction = DrawAction.Crouch;
             //idleFrame = IdleFrames.FirstFrame;
             runningFrames = RunningFrames.FirstFrame;
             crouchingFrames = CrouchingFrames.FirstFrame;
+            
         }
         protected override void Initialize()
         {
             base.Initialize();
             {
+                MainForm.StartPosition = FormStartPosition.Manual;
+                MainForm.Location = new System.Drawing.Point(0, (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 2) - (MainForm.Height / 2));
+                MainForm.Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
                 CFrameMargin = RunningTexture.Height - CrouchTexture.Height;
                 FloorMargin = (RunningTexture.Height - FloorTexture.Height) - 5;
                 CactusColor = FloorColor = DinoColor = Color.White;
@@ -193,7 +197,6 @@ namespace ChromeDino
         }
         protected override void Update(GameTime gameTime)
         {
-
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Escape))
                 Exit();
