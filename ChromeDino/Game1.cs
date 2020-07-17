@@ -60,8 +60,12 @@ namespace ChromeDino
         Rectangle HIRectDest;
 
         Texture2D CloudTexture;
-        Rectangle CloudRect;
-        Rectangle CloudRectDest;
+        Rectangle Cloud1Rect;
+        Rectangle Cloud1RectDest;
+        Rectangle Cloud2Rect;
+        Rectangle Cloud2RectDest;
+        Rectangle Cloud3Rect;
+        Rectangle Cloud3RectDest;
 
         Texture2D DeadDinoTexture;
         Rectangle DeadDinoRect;
@@ -84,10 +88,13 @@ namespace ChromeDino
         Color TextColor;
         bool LightColorMode = true;
         double DayNightCycleTime;
+        int MainFormHeightByTwo;
 
         string messege = "";
         int CollisionCount = 0;
         bool DebugTextures = false;
+        Random random;
+
         Texture2D DinoDebugTexture;
         Rectangle DinoDebugRect;
         Rectangle DinoDebugRectDest;
@@ -96,6 +103,13 @@ namespace ChromeDino
         Rectangle CactusDebugRect;
         Rectangle CactusDebugRectDest;
 
+        Texture2D RestartTexture;
+        Rectangle RestartRect;
+        Rectangle RestartRectDest;
+
+        bool Pausegame = false;
+
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -103,20 +117,19 @@ namespace ChromeDino
             Window.Title = "T Rex Runner";
             IsMouseVisible = false;
             MainForm = (Form)Control.FromHandle(Window.Handle);
-            //Window.AllowUserResizing = true;
+
             score = 0;
             drawAction = DrawAction.Crouch;
-            //idleFrame = IdleFrames.FirstFrame;
             runningFrames = RunningFrames.FirstFrame;
             crouchingFrames = CrouchingFrames.FirstFrame;
-            
         }
         protected override void Initialize()
         {
             base.Initialize();
             {
+                MainFormHeightByTwo = MainForm.Height / 2;
                 MainForm.StartPosition = FormStartPosition.Manual;
-                MainForm.Location = new System.Drawing.Point(0, (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 2) - (MainForm.Height / 2));
+                MainForm.Location = new System.Drawing.Point(0, (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 2) - (MainFormHeightByTwo));
                 MainForm.Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
                 CFrameMargin = RunningTexture.Height - CrouchTexture.Height;
                 FloorMargin = (RunningTexture.Height - FloorTexture.Height) - 5;
@@ -124,47 +137,9 @@ namespace ChromeDino
                 BackColor = Color.White;
                 TextColor = Color.Black;
 
-                JumpRect = new Rectangle(0, 0, JumpTexture.Width / 2, JumpTexture.Height);
-                JumpRectDest = new Rectangle(0, MainForm.Height / 2, JumpRect.Width, JumpRect.Height);
+                random = new Random();
+                InitAllRecangles();
 
-                RunningRect = new Rectangle(0, 0, RunningTexture.Width / 2, RunningTexture.Height);
-                RunningRectDest = new Rectangle(0, MainForm.Height / 2, RunningRect.Width, RunningRect.Height);
-
-                CrouchRect = new Rectangle(0, 0, CrouchTexture.Width / 2, CrouchTexture.Height);
-                CrouchRectDest = new Rectangle(0, MainForm.Height / 2 + CFrameMargin, CrouchRect.Width, CrouchRect.Height);
-
-                FloorRect = new Rectangle(0, 0, FloorTexture.Width, FloorTexture.Height);
-                FloorRectDest = new Rectangle(0, MainForm.Height / 2 + FloorMargin, FloorRect.Width, FloorRect.Height);
-
-                FloorRect1 = new Rectangle(FloorRect.Width, 0, FloorTexture.Width, FloorTexture.Height);
-                FloorRect1Dest = new Rectangle(FloorRectDest.Width, MainForm.Height / 2 + FloorMargin, FloorRect1.Width, FloorRect1.Height);
-
-                Cactuse1Rect = new Rectangle(0, 0, CactusTexture.Width, CactusTexture.Height);
-                Cactuse1DestRect = new Rectangle(1000, RunningRectDest.Y + 15, Cactuse1Rect.Width, Cactuse1Rect.Height);
-
-                Cactuse2Rect = new Rectangle(0, 0, CactusTexture.Width, CactusTexture.Height);
-                Cactuse2RectDest = new Rectangle(200, RunningRectDest.Y + 15, Cactuse2Rect.Width, Cactuse2Rect.Height);
-
-                Cactuse3Rect = new Rectangle(0, 0, CactusTexture.Width, CactusTexture.Height);
-                Cactuse3RectDest = new Rectangle(200, RunningRectDest.Y + 15, Cactuse3Rect.Width, Cactuse3Rect.Height);
-
-                HIRect = new Rectangle(0, 0, HITexture.Width, HITexture.Height);
-                HIRectDest = new Rectangle(MainForm.Width - (HITexture.Width + 18), 0, HIRect.Width, HIRect.Height);
-
-                NumbersRect = new Rectangle(0, 0, NumbersTexturesArray[0].Width, NumbersTexturesArray[0].Height);
-                NumbersRectDest = new Rectangle(HIRectDest.X - NumbersTexturesArray[0].Width, 0, NumbersRect.Width, NumbersRect.Height);
-
-                CloudRect = new Rectangle(0, 0, CloudTexture.Width, CloudTexture.Height);
-                CloudRectDest = new Rectangle(MainForm.Width + CloudTexture.Width + 10, FloorRectDest.Y / 2 - CloudTexture.Height, CloudRect.Width, CloudRect.Height);
-
-                DeadDinoRect = new Rectangle(0, 0, DeadDinoTexture.Width, DeadDinoTexture.Height);
-                DeadDinoRectDest = new Rectangle(RunningRectDest.X, RunningRectDest.Y, DeadDinoRect.Width, DeadDinoRect.Height);
-
-                DinoDebugRect = new Rectangle(0, 0, RunningRect.Width, RunningRect.Height);
-                DinoDebugRectDest = new Rectangle(RunningRectDest.X, RunningRectDest.Y, DinoDebugRect.Width, DinoDebugRect.Height);
-
-                CactusDebugRect = new Rectangle(0, 0, Cactuse1Rect.Width, Cactuse1Rect.Height);
-                CactusDebugRectDest = new Rectangle(Cactuse1DestRect.X, Cactuse1DestRect.Y, CactusDebugRect.Width, CactusDebugRect.Height);
             }
         }
         protected override void LoadContent()
@@ -174,13 +149,17 @@ namespace ChromeDino
             JumpTexture = Content.Load<Texture2D>(@"Dino/Idle");
             RunningTexture = Content.Load<Texture2D>(@"Dino/Running");
             CrouchTexture = Content.Load<Texture2D>(@"Dino/Crouching");
-            FloorTexture = Content.Load<Texture2D>(@"Others/Floor1");
-            CactusTexture = Content.Load<Texture2D>(@"Cactuses/Small Cactuses/Cactus-0");
+            DeadDinoTexture = Content.Load<Texture2D>(@"Dino/DeadDino");
+
             for (int i = 0; i < 10; i++)
                 NumbersTexturesArray[i] = Content.Load<Texture2D>(@"Numbers/Number-" + i);
+
+            CactusTexture = Content.Load<Texture2D>(@"Cactuses/Small Cactuses/Cactus-0");
+
+            FloorTexture = Content.Load<Texture2D>(@"Others/Floor1");
             HITexture = Content.Load<Texture2D>(@"Others/HI");
             CloudTexture = Content.Load<Texture2D>(@"Others/Cloud");
-            DeadDinoTexture = Content.Load<Texture2D>(@"Dino/DeadDino");
+            RestartTexture = Content.Load<Texture2D>(@"Others/Restart");
 
             DinoDebugTexture = new Texture2D(GraphicsDevice, RunningTexture.Width, RunningTexture.Height);
             Color[] DinoColor = new Color[RunningTexture.Width * RunningTexture.Height];
@@ -193,63 +172,71 @@ namespace ChromeDino
             for (int i = 0; i < CactusTexture.Width * CactusTexture.Height; i++)
                 CactuseColor[i] = Color.Green;
             CactusDebugTexture.SetData(CactuseColor);
-
         }
         protected override void Update(GameTime gameTime)
         {
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Escape))
                 Exit();
-
             // CycleDayAndNight(gameTime);
             InitCurrentDino();
-
-            CheckDinoCactusCollision(Cactuse1DestRect);
-
-            //userInput
-            if (!Jumping)
+            if (!Pausegame)
             {
-                CheckUserInput(keyState);
-            }
-            //JumpLogic
-            if (Jumping)
-            {
-                Jump(gameTime);
-            }
+                CheckDinoCactusCollision(Cactuse1DestRect);
 
-            //Floor and Cactus Logic
-            FloorFrameDrawtime += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (FloorFrameDrawtime >= 15)
-            {
-                //Floor
-                RollTheFloor();
-
-                //Cactuse
-                RollTheCactuses();
-
-                //Cloud
-                RollTheCloud();
-
-                FloorFrameDrawtime = 0;
-            }
-
-            //Dino Logic
-            DinoFrameDrawtime += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (DinoFrameDrawtime >= 85)
-            {
-                score++;
-                if (drawAction == DrawAction.Running)
+                //userInput
+                if (!Jumping)
                 {
-                    ChangeRunningFrames();
+                    CheckUserInput(keyState);
                 }
-                if (drawAction == DrawAction.Crouch)
+                //JumpLogic
+                if (Jumping)
                 {
-                    ChangeChrouchFrames();
+                    Jump(gameTime);
                 }
-                DinoFrameDrawtime = 0;
+
+                //Floor and Cactus Logic
+                FloorFrameDrawtime += gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (FloorFrameDrawtime >= 15)
+                {
+                    //Floor
+                    RollTheFloor();
+
+                    //Cactuse
+                    RollTheCactuses();
+
+                    //Cloud
+                    RollTheCloud();
+
+                    FloorFrameDrawtime = 0;
+                }
+
+                //Dino Logic
+                DinoFrameDrawtime += gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (DinoFrameDrawtime >= 85)
+                {
+                    score++;
+                    if (drawAction == DrawAction.Running)
+                    {
+                        ChangeRunningFrames();
+                    }
+                    if (drawAction == DrawAction.Crouch)
+                    {
+                        ChangeChrouchFrames();
+                    }
+                    DinoFrameDrawtime = 0;
+                }
+                DinoDebugRectDest = CurrentDinoRectDest;
+                CactusDebugRectDest = Cactuse1DestRect;
             }
-            DinoDebugRectDest = CurrentDinoRectDest;
-            CactusDebugRectDest = Cactuse1DestRect;
+            else
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                {
+                    InitAllRecangles();
+                    Pausegame = false;
+                }
+            }
             base.Update(gameTime);
         }
         protected override void Draw(GameTime gameTime)
@@ -268,7 +255,7 @@ namespace ChromeDino
             spriteBatch.Draw(FloorTexture, FloorRect1Dest, FloorRect1, FloorColor);
 
             //Drawing Cloud
-            spriteBatch.Draw(CloudTexture, CloudRectDest, CloudRect, Color.White);
+            spriteBatch.Draw(CloudTexture, Cloud1RectDest, Cloud1Rect, Color.White);
 
             //Drawing Cactus
             spriteBatch.Draw(CactusTexture, Cactuse1DestRect, Cactuse1Rect, CactusColor);
@@ -278,24 +265,36 @@ namespace ChromeDino
             DrawScore();
 
             //Drawing Messesge
-            spriteBatch.DrawString(font, messege.ToString() + "Score: " + score, Vector2.One, TextColor);
+            //spriteBatch.DrawString(font, messege.ToString() + "Paused: " + Pausegame, Vector2.One, TextColor);
 
-            //Drawing Dino Animations
-            if (drawAction == DrawAction.Running)
+            if (!Pausegame)
             {
-                spriteBatch.Draw(RunningTexture, RunningRectDest, RunningRect, DinoColor);
+                //Drawing Dino Animations
+                if (drawAction == DrawAction.Running)
+                {
+                    spriteBatch.Draw(RunningTexture, RunningRectDest, RunningRect, DinoColor);
+                }
+                else if (drawAction == DrawAction.Crouch)
+                {
+                    spriteBatch.Draw(CrouchTexture, CrouchRectDest, CrouchRect, DinoColor);
+                }
+                else if (drawAction == DrawAction.Idle)
+                {
+                    spriteBatch.Draw(JumpTexture, JumpRectDest, JumpRect, DinoColor);
+                }
+                else if (drawAction == DrawAction.Dead)
+                {
+                    spriteBatch.Draw(DeadDinoTexture, DeadDinoRectDest, DeadDinoRect, Color.White);
+                }
+
             }
-            else if (drawAction == DrawAction.Crouch)
+
+            if (Pausegame)
             {
-                spriteBatch.Draw(CrouchTexture, CrouchRectDest, CrouchRect, DinoColor);
-            }
-            else if (drawAction == DrawAction.Idle)
-            {
-                spriteBatch.Draw(JumpTexture, JumpRectDest, JumpRect, DinoColor);
-            }
-            else if (drawAction == DrawAction.Dead)
-            {
-                spriteBatch.Draw(DeadDinoTexture, DeadDinoRectDest, DeadDinoRect, Color.Red);
+                
+                spriteBatch.Draw(DeadDinoTexture, DeadDinoRectDest, DeadDinoRect, Color.White);
+                spriteBatch.Draw(RestartTexture, RestartRectDest, RestartRect, Color.White);
+                spriteBatch.DrawString(font, "Press SPACE to Restart the game.", new Vector2(RestartRectDest.X - 145, RestartRectDest.Y + RestartTexture.Height + 10), Color.Gray);
             }
             spriteBatch.End();
             base.Draw(gameTime);
@@ -305,7 +304,7 @@ namespace ChromeDino
         {
             if (!Jumped)
             {
-                if (((MainForm.Height / 2) - JumpRectDest.Y) >= jumpHeight)
+                if (((MainFormHeightByTwo) - JumpRectDest.Y) >= jumpHeight)
                 {
                     Jumped = true;
                 }
@@ -319,7 +318,7 @@ namespace ChromeDino
             {
                 if (AirTime >= AirTimeTotal)
                 {
-                    if (JumpRectDest.Y == (MainForm.Height / 2))
+                    if (JumpRectDest.Y == (MainFormHeightByTwo))
                     {
                         Jumping = false;
                         Jumped = false;
@@ -407,10 +406,10 @@ namespace ChromeDino
 
         private void RollTheCloud()
         {
-            if (!(CloudRectDest.X + CloudTexture.Width < -10))
-                CloudRectDest.X--;
+            if (!(Cloud1RectDest.X + CloudTexture.Width < -10))
+                Cloud1RectDest.X--;
             else
-                CloudRectDest.X = MainForm.Width + CloudTexture.Width + 10;
+                Cloud1RectDest = new Rectangle(random.Next(MainForm.Width + CloudTexture.Width + 10, MainForm.Width + CloudTexture.Width + 50), random.Next(CloudTexture.Height + 10, FloorRectDest.Y - (CloudTexture.Height + 10)), Cloud1Rect.Width, Cloud1Rect.Height);
         }
 
         private void ChangeRunningFrames()
@@ -485,9 +484,14 @@ namespace ChromeDino
                 //bool IntersectedRegionCactus = IsRegionTransparent(CactusTexture, CactusDestRect);
                 if (!IntersectedRegionDino)
                 {
-                    //messege = $"Collision: {CollisionCount}";
-                    score = 0;
-                    CollisionCount++;
+                    if(drawAction == DrawAction.Idle)
+                    {
+                        DeadDinoRectDest.X = JumpRectDest.X;
+                        DeadDinoRectDest.Y = JumpRectDest.Y;
+                    }
+                    Pausegame = true;
+                    drawAction = DrawAction.Dead;
+                    GameOver();
                 }
             }
         }
@@ -571,6 +575,62 @@ namespace ChromeDino
                 }
                 NumbersRectDest.X = HIRectDest.X - NumbersTexturesArray[0].Width;
             }
+        }
+
+        private void GameOver()
+        {
+            Pausegame = true;
+            score = 0;
+
+        }
+
+        private void InitAllRecangles()
+        {
+
+            JumpRect = new Rectangle(0, 0, JumpTexture.Width / 2, JumpTexture.Height);
+            JumpRectDest = new Rectangle(0, MainFormHeightByTwo, JumpRect.Width, JumpRect.Height);
+
+            RunningRect = new Rectangle(0, 0, RunningTexture.Width / 2, RunningTexture.Height);
+            RunningRectDest = new Rectangle(0, MainFormHeightByTwo, RunningRect.Width, RunningRect.Height);
+
+            CrouchRect = new Rectangle(0, 0, CrouchTexture.Width / 2, CrouchTexture.Height);
+            CrouchRectDest = new Rectangle(0, MainFormHeightByTwo + CFrameMargin, CrouchRect.Width, CrouchRect.Height);
+
+            FloorRect = new Rectangle(0, 0, FloorTexture.Width, FloorTexture.Height);
+            FloorRectDest = new Rectangle(0, MainFormHeightByTwo + FloorMargin, FloorRect.Width, FloorRect.Height);
+
+            FloorRect1 = new Rectangle(FloorRect.Width, 0, FloorTexture.Width, FloorTexture.Height);
+            FloorRect1Dest = new Rectangle(FloorRectDest.Width, MainFormHeightByTwo + FloorMargin, FloorRect1.Width, FloorRect1.Height);
+
+            Cactuse1Rect = new Rectangle(0, 0, CactusTexture.Width, CactusTexture.Height);
+            Cactuse1DestRect = new Rectangle(1000, RunningRectDest.Y + 15, Cactuse1Rect.Width, Cactuse1Rect.Height);
+
+            Cactuse2Rect = new Rectangle(0, 0, CactusTexture.Width, CactusTexture.Height);
+            Cactuse2RectDest = new Rectangle(200, RunningRectDest.Y + 15, Cactuse2Rect.Width, Cactuse2Rect.Height);
+
+            Cactuse3Rect = new Rectangle(0, 0, CactusTexture.Width, CactusTexture.Height);
+            Cactuse3RectDest = new Rectangle(200, RunningRectDest.Y + 15, Cactuse3Rect.Width, Cactuse3Rect.Height);
+
+            HIRect = new Rectangle(0, 0, HITexture.Width, HITexture.Height);
+            HIRectDest = new Rectangle(MainForm.Width - (HITexture.Width + 18), 0, HIRect.Width, HIRect.Height);
+
+            NumbersRect = new Rectangle(0, 0, NumbersTexturesArray[0].Width, NumbersTexturesArray[0].Height);
+            NumbersRectDest = new Rectangle(HIRectDest.X - NumbersTexturesArray[0].Width, 0, NumbersRect.Width, NumbersRect.Height);
+
+            Cloud1Rect = new Rectangle(0, 0, CloudTexture.Width, CloudTexture.Height);
+            Cloud1RectDest = new Rectangle(random.Next(MainForm.Width + CloudTexture.Width + 10, MainForm.Width + CloudTexture.Width + 50), random.Next(CloudTexture.Height + 10, FloorRectDest.Y - 10), Cloud1Rect.Width, Cloud1Rect.Height);
+
+            DeadDinoRect = new Rectangle(0, 0, DeadDinoTexture.Width, DeadDinoTexture.Height);
+            DeadDinoRectDest = new Rectangle(RunningRectDest.X, RunningRectDest.Y, DeadDinoRect.Width, DeadDinoRect.Height);
+
+            DinoDebugRect = new Rectangle(0, 0, RunningRect.Width, RunningRect.Height);
+            DinoDebugRectDest = new Rectangle(RunningRectDest.X, RunningRectDest.Y, DinoDebugRect.Width, DinoDebugRect.Height);
+
+            CactusDebugRect = new Rectangle(0, 0, Cactuse1Rect.Width, Cactuse1Rect.Height);
+            CactusDebugRectDest = new Rectangle(Cactuse1DestRect.X, Cactuse1DestRect.Y, CactusDebugRect.Width, CactusDebugRect.Height);
+
+            RestartRect = new Rectangle(0, 0, RestartTexture.Width, RestartTexture.Height);
+            RestartRectDest = new Rectangle(MainForm.Width / 2 - RestartTexture.Width / 2, MainFormHeightByTwo - RestartTexture.Height / 2, RestartRect.Width, RestartRect.Height);
         }
     }
 }

@@ -4,7 +4,6 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Fonts/fonts.spritefont</File>
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Birb/Birb-0.png</File>
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Birb/Birb-1.png</File>
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Cactuses/Big Cactuses/BigCactus-1.png</File>
@@ -20,6 +19,7 @@
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Dino/DeadDino.png</File>
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Dino/Idle.png</File>
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Dino/Running.png</File>
+    <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Fonts/fonts.spritefont</File>
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Moon/Full Moon.png</File>
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Moon/Moon-0.png</File>
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Moon/Moon-1.png</File>
@@ -37,17 +37,54 @@
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Numbers/Number-7.png</File>
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Numbers/Number-8.png</File>
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Numbers/Number-9.png</File>
-    <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Other/Cloud.png</File>
-    <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Other/Floor1.png</File>
-    <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Other/HI.png</File>
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Others/Cloud.png</File>
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Others/Floor1.png</File>
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Others/HI.png</File>
+    <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Others/Restart.png</File>
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Stars/Star-0.png</File>
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Stars/Star-1.png</File>
     <File>E:/Bhavin/Personal Projects/GitHub/T-Rex-Runner-CSharp/ChromeDino/Content/Stars/Star-2.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

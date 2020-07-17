@@ -76,12 +76,6 @@ E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x8
 E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Dino\DeadDino.xnb
 E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Dino\Idle.xnb
 E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Dino\Running.xnb
-E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Others\Cloud.xnb
-E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Others\Floor1.xnb
-E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Others\HI.xnb
-E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Other\Cloud.xnb
-E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Other\Floor1.xnb
-E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Other\HI.xnb
 E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Cactuses\Small Cactuses\Cactus-0.xnb
 E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Cactuses\Small Cactuses\Cactus-1.xnb
 E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Cactuses\Small Cactuses\Cactus-2.xnb
@@ -133,3 +127,7 @@ E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\obj\x86\Debug\
 E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\obj\x86\Debug\ChromeDino.csproj.CopyComplete
 E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\obj\x86\Debug\ChromeDino.exe
 E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\obj\x86\Debug\ChromeDino.pdb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Others\Restart.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Others\Cloud.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Others\Floor1.xnb
+E:\Bhavin\Personal Projects\GitHub\T-Rex-Runner-CSharp\ChromeDino\bin\Windows\x86\Debug\Content\Others\HI.xnb
