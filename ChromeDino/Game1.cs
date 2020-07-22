@@ -200,6 +200,14 @@ namespace ChromeDino
             if (keyState.IsKeyDown(Keys.Escape))
                 Exit();
             // CycleDayAndNight(gameTime);
+
+            if(keyState.IsKeyDown(Keys.Enter))
+            {
+                if (!Pausegame)
+                    Pausegame = true;
+                else
+                    Pausegame = false;
+            }
             InitCurrentDino();
             if (!Pausegame)
             {
@@ -314,10 +322,10 @@ namespace ChromeDino
             }
             if (Pausegame)
             {
-
-                spriteBatch.Draw(DeadDinoTexture, DeadDinoRectPos, DeadDinoRect, DinoColor);
-                spriteBatch.Draw(RestartTexture, RestartRectPos, RestartRect, Color.White);
-                spriteBatch.DrawString(font, "Press SPACE to Restart the game.", new Vector2(RestartRectPos.X - 145, RestartRectPos.Y + RestartTexture.Height + 10), Color.Gray);
+                spriteBatch.Draw(RunningTexture, RunningRectPos, RunningRect, DinoColor);
+                //spriteBatch.Draw(DeadDinoTexture, DeadDinoRectPos, DeadDinoRect, DinoColor);
+                //spriteBatch.Draw(RestartTexture, RestartRectPos, RestartRect, Color.White);
+                //spriteBatch.DrawString(font, "Press SPACE to Restart the game.", new Vector2(RestartRectPos.X - 145, RestartRectPos.Y + RestartTexture.Height + 10), Color.Gray);
             }
 
             spriteBatch.End();
@@ -363,9 +371,7 @@ namespace ChromeDino
 
         private void CheckUserInput(KeyboardState keyState)
         {
-            if (keyState.IsKeyDown(Keys.Enter))
-                score += 1000;
-            else if (keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.Down))
+            if (keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.Down))
                 drawAction = DrawAction.Crouch;
             else if (keyState.IsKeyDown(Keys.Space) || keyState.IsKeyDown(Keys.Up) || keyState.IsKeyDown(Keys.W))
             {
