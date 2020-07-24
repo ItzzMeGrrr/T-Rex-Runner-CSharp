@@ -12,6 +12,7 @@ namespace ChromeDino
     enum DrawAction { Idle, Running, Crouch, Dead };
     enum RunningFrames { FirstFrame, LastFrame };
     enum CrouchingFrames { FirstFrame, LastFrame };
+    enum JumpType { Long, Short };
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
@@ -49,9 +50,6 @@ namespace ChromeDino
         Texture2D Cactus3Texture;
         Rectangle Cactuse3Rect;
         Rectangle Cactuse3PosRect;
-        bool BigCactus;
-        int[] SmallCactusIndexes;
-        int[] BigCactusIndexes;
 
         Texture2D FloorTexture;
         Rectangle FloorRect;
@@ -70,10 +68,10 @@ namespace ChromeDino
         Texture2D CloudTexture;
         Rectangle Cloud1Rect;
         Rectangle Cloud1RectPos;
-        Rectangle Cloud2Rect;
-        Rectangle Cloud2RectPos;
-        Rectangle Cloud3Rect;
-        Rectangle Cloud3RectPos;
+        //Rectangle Cloud2Rect;
+        //Rectangle Cloud2RectPos;
+        //Rectangle Cloud3Rect;
+        //Rectangle Cloud3RectPos;
 
         Texture2D DeadDinoTexture;
         Rectangle DeadDinoRect;
@@ -85,9 +83,14 @@ namespace ChromeDino
 
         bool Jumping = false;
         bool Jumped = false;
-        int jumpHeight = 120;
         double AirTime = 0;
-        int AirTimeTotal = 45;
+        readonly int MinJumpHeight = 120;
+        readonly int MinAirStayTime = 45;
+        readonly int MaxJumpHeight = 140;
+        readonly int MaxAirStayTime = 55;
+        int JumpUpSpeed = 10;
+        int JumpDownSpeed = 5;
+        bool BigJump = false;
 
         Color DinoColor;
         Color FloorColor;
@@ -99,17 +102,7 @@ namespace ChromeDino
         int MainFormHeightByTwo;
 
         string messege = "";
-        int CollisionCount = 0;
-        bool DebugTextures = false;
         Random random;
-
-        Texture2D DinoDebugTexture;
-        Rectangle DinoDebugRect;
-        Rectangle DinoDebugRectPos;
-
-        Texture2D CactusDebugTexture;
-        Rectangle CactusDebugRect;
-        Rectangle CactusDebugRectPos;
 
         Texture2D RestartTexture;
         Rectangle RestartRect;
@@ -118,6 +111,9 @@ namespace ChromeDino
         int ScreenWidth;
 
         bool Pausegame = false;
+        KeyboardState CurrentKeyboardState = Keyboard.GetState();
+        KeyboardState OldKeyboardState = Keyboard.GetState();
+
 
 
         public Game1()
@@ -182,26 +178,16 @@ namespace ChromeDino
             FloorTexture = Content.Load<Texture2D>(@"Others/Floor1");
             RestartTexture = Content.Load<Texture2D>(@"Others/Restart");
 
-            DinoDebugTexture = new Texture2D(GraphicsDevice, RunningTexture.Width, RunningTexture.Height);
-            Color[] DinoColor = new Color[RunningTexture.Width * RunningTexture.Height];
-            for (int i = 0; i < RunningTexture.Width * RunningTexture.Height; i++)
-                DinoColor[i] = Color.Yellow;
-            DinoDebugTexture.SetData(DinoColor);
 
-            //CactusDebugTexture = new Texture2D(GraphicsDevice, Cactus1Texture.Width, Cactus1Texture.Height);
-            //Color[] CactuseColor = new Color[Cactus1Texture.Width * Cactus1Texture.Height];
-            //for (int i = 0; i < Cactus1Texture.Width * Cactus1Texture.Height; i++)
-            //    CactuseColor[i] = Color.Green;
-            //CactusDebugTexture.SetData(CactuseColor);
         }
         protected override void Update(GameTime gameTime)
         {
-            KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Escape))
+            CurrentKeyboardState = Keyboard.GetState();
+            if (CurrentKeyboardState.IsKeyDown(Keys.Escape))
                 Exit();
             // CycleDayAndNight(gameTime);
 
-            if(keyState.IsKeyDown(Keys.Enter))
+            if (CurrentKeyboardState.IsKeyDown(Keys.Enter))
             {
                 if (!Pausegame)
                     Pausegame = true;
@@ -218,7 +204,7 @@ namespace ChromeDino
                 //userInput
                 if (!Jumping)
                 {
-                    CheckUserInput(keyState);
+                    CheckUserInput(CurrentKeyboardState, OldKeyboardState);
                 }
                 //JumpLogic
                 if (Jumping)
@@ -257,8 +243,6 @@ namespace ChromeDino
                     }
                     DinoFrameDrawtime = 0;
                 }
-                DinoDebugRectPos = CurrentDinoRectPos;
-                CactusDebugRectPos = Cactuse1PosRect;
             }
             else
             {
@@ -269,18 +253,13 @@ namespace ChromeDino
                 }
             }
 
+            OldKeyboardState = CurrentKeyboardState;
             base.Update(gameTime);
         }
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(BackColor);
             spriteBatch.Begin();
-
-            if (DebugTextures)
-            {
-                spriteBatch.Draw(DinoDebugTexture, DinoDebugRectPos, DinoDebugRect, Color.White);
-                spriteBatch.Draw(CactusDebugTexture, CactusDebugRectPos, CactusDebugRect, Color.White);
-            }
 
             //Drawing floor
             spriteBatch.Draw(FloorTexture, FloorRectPos, FloorRect, FloorColor);
@@ -298,7 +277,7 @@ namespace ChromeDino
             DrawScore();
 
             //Drawing Messesge
-           // spriteBatch.DrawString(font, "1: " + Cactuse1PosRect.X + ", 2: " + Cactuse2PosRect.X + ", 3: " + Cactuse3PosRect.X, new Vector2(0, 1), TextColor);
+            spriteBatch.DrawString(font, messege, new Vector2(0, 1), TextColor);
 
             if (!Pausegame)
             {
@@ -322,10 +301,9 @@ namespace ChromeDino
             }
             if (Pausegame)
             {
-                spriteBatch.Draw(RunningTexture, RunningRectPos, RunningRect, DinoColor);
-                //spriteBatch.Draw(DeadDinoTexture, DeadDinoRectPos, DeadDinoRect, DinoColor);
-                //spriteBatch.Draw(RestartTexture, RestartRectPos, RestartRect, Color.White);
-                //spriteBatch.DrawString(font, "Press SPACE to Restart the game.", new Vector2(RestartRectPos.X - 145, RestartRectPos.Y + RestartTexture.Height + 10), Color.Gray);
+                spriteBatch.Draw(DeadDinoTexture, DeadDinoRectPos, DeadDinoRect, DinoColor);
+                spriteBatch.Draw(RestartTexture, RestartRectPos, RestartRect, Color.White);
+                spriteBatch.DrawString(font, "Press SPACE to Restart the game.", new Vector2(RestartRectPos.X - 145, RestartRectPos.Y + RestartTexture.Height + 10), Color.Gray);
             }
 
             spriteBatch.End();
@@ -336,19 +314,20 @@ namespace ChromeDino
         {
             if (!Jumped)
             {
-                if (((MainFormHeightByTwo) - JumpRectPos.Y) >= jumpHeight)
+
+                if (((MainFormHeightByTwo) - JumpRectPos.Y) >= MinJumpHeight)
                 {
                     Jumped = true;
                 }
                 else
                 {
-                    JumpRectPos.Y -= 10;
+                    JumpRectPos.Y -= JumpUpSpeed;
                     //RectIdlePos.X += 2;
                 }
             }
             else
             {
-                if (AirTime >= AirTimeTotal)
+                if (AirTime >= MaxAirStayTime)
                 {
                     if (JumpRectPos.Y == (MainFormHeightByTwo))
                     {
@@ -358,7 +337,7 @@ namespace ChromeDino
                     }
                     else
                     {
-                        JumpRectPos.Y += 5;
+                        JumpRectPos.Y += JumpDownSpeed;
                         //RectIdlePos.X--;
                     }
                 }
@@ -369,18 +348,14 @@ namespace ChromeDino
             }
         }
 
-        private void CheckUserInput(KeyboardState keyState)
+        private void CheckUserInput(KeyboardState CurrentKeyState, KeyboardState OldKeyState)
         {
-            if (keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.Down))
+            if (CurrentKeyState.IsKeyDown(Keys.S) || CurrentKeyState.IsKeyDown(Keys.Down))
                 drawAction = DrawAction.Crouch;
-            else if (keyState.IsKeyDown(Keys.Space) || keyState.IsKeyDown(Keys.Up) || keyState.IsKeyDown(Keys.W))
+            else if (CurrentKeyState.IsKeyDown(Keys.Space) || CurrentKeyState.IsKeyDown(Keys.Up) || CurrentKeyState.IsKeyDown(Keys.W))
             {
                 Jumping = true;
                 drawAction = DrawAction.Idle;
-            }
-            else if (keyState.IsKeyDown(Keys.D))
-            {
-                drawAction = DrawAction.Dead;
             }
             else
                 drawAction = DrawAction.Running;
@@ -424,7 +399,7 @@ namespace ChromeDino
 
         private void RollTheCactuses()
         {
-            if (!(Cactuse1PosRect.X + Cactuse1Rect.Width <= -100))
+            if (!(Cactuse1PosRect.X + Cactuse1Rect.Width <= -20))
             {
                 Cactuse1PosRect.X -= 10;
             }
@@ -432,7 +407,7 @@ namespace ChromeDino
             {
                 InitCactus(1);
             }
-            if (!(Cactuse2PosRect.X + Cactuse2Rect.Width <= -100))
+            if (!(Cactuse2PosRect.X + Cactuse2Rect.Width <= -20))
             {
                 Cactuse2PosRect.X -= 10;
             }
@@ -440,7 +415,7 @@ namespace ChromeDino
             {
                 InitCactus(2);
             }
-            if (!(Cactuse3PosRect.X + Cactuse3Rect.Width <= -100))
+            if (!(Cactuse3PosRect.X + Cactuse3Rect.Width <= -200))
             {
                 Cactuse3PosRect.X -= 10;
             }
@@ -627,7 +602,6 @@ namespace ChromeDino
         {
             Pausegame = true;
             score = 0;
-
         }
 
         private void InitAllRecangles()
@@ -659,9 +633,6 @@ namespace ChromeDino
             DeadDinoRect = new Rectangle(0, 0, DeadDinoTexture.Width, DeadDinoTexture.Height);
             DeadDinoRectPos = new Rectangle(RunningRectPos.X, RunningRectPos.Y, DeadDinoRect.Width, DeadDinoRect.Height);
 
-            DinoDebugRect = new Rectangle(0, 0, RunningRect.Width, RunningRect.Height);
-            DinoDebugRectPos = new Rectangle(RunningRectPos.X, RunningRectPos.Y, DinoDebugRect.Width, DinoDebugRect.Height);
-
             Cactuse1Rect = new Rectangle(0, 0, Cactus1Texture.Width, Cactus1Texture.Height);
             Cactuse1PosRect = new Rectangle(ScreenWidth + Cactus1Texture.Width + 10, RunningRectPos.Y + 15, Cactuse1Rect.Width, Cactuse1Rect.Height);
 
@@ -672,9 +643,6 @@ namespace ChromeDino
             int Cac3X = random.Next(Cactuse2PosRect.X + 400, Cactuse2PosRect.X + 500);
             Cactuse3Rect = new Rectangle(0, 0, Cactus3Texture.Width, Cactus3Texture.Height);
             Cactuse3PosRect = new Rectangle(Cac3X, RunningRectPos.Y + 15, Cactuse3Rect.Width, Cactuse3Rect.Height);
-
-            CactusDebugRect = new Rectangle(0, 0, Cactuse1Rect.Width, Cactuse1Rect.Height);
-            CactusDebugRectPos = new Rectangle(Cactuse1PosRect.X, Cactuse1PosRect.Y, CactusDebugRect.Width, CactusDebugRect.Height);
 
             RestartRect = new Rectangle(0, 0, RestartTexture.Width, RestartTexture.Height);
             RestartRectPos = new Rectangle(MainForm.Width / 2 - RestartTexture.Width / 2, MainFormHeightByTwo - RestartTexture.Height / 2, RestartRect.Width, RestartRect.Height);
@@ -695,10 +663,10 @@ namespace ChromeDino
                     Cactus1Texture = SmallCactusTextureList[random.Next(0, SmallCactusTextureList.Count)];
                     Cac1Y = RunningRectPos.Y + 15;
                 }
-                int Cac1X = GetRandomX(Cactus1Texture.Width);
-                CheckIfTwoCactusesAreClose(1);
+                int Cac1X = GetRandomX(1);
                 Cactuse1Rect = new Rectangle(0, 0, Cactus1Texture.Width, Cactus1Texture.Height);
                 Cactuse1PosRect = new Rectangle(Cac1X, Cac1Y, Cactuse1Rect.Width, Cactuse1Rect.Height);
+                CheckIfTwoCactusesAreClose(1);
             }
             else if (cactus == 2)
             {
@@ -714,10 +682,10 @@ namespace ChromeDino
                     Cac2Y = RunningRectPos.Y + 15;
                 }
 
-                int Cac2X = GetRandomX(Cactus2Texture.Width);
-                CheckIfTwoCactusesAreClose(2);
+                int Cac2X = GetRandomX(2);
                 Cactuse2Rect = new Rectangle(0, 0, Cactus2Texture.Width, Cactus2Texture.Height);
                 Cactuse2PosRect = new Rectangle(Cac2X, Cac2Y, Cactuse2Rect.Width, Cactuse2Rect.Height);
+                CheckIfTwoCactusesAreClose(2);
             }
             else if (cactus == 3)
             {
@@ -733,10 +701,10 @@ namespace ChromeDino
                     Cac3Y = RunningRectPos.Y + 15;
                 }
 
-                int Cac3X = GetRandomX(Cactus3Texture.Width);
-                CheckIfTwoCactusesAreClose(3);
+                int Cac3X = GetRandomX(3);
                 Cactuse3Rect = new Rectangle(0, 0, Cactus3Texture.Width, Cactus3Texture.Height);
                 Cactuse3PosRect = new Rectangle(Cac3X, Cac3Y, Cactuse3Rect.Width, Cactuse3Rect.Height);
+                CheckIfTwoCactusesAreClose(3);
             }
         }
 
@@ -760,32 +728,43 @@ namespace ChromeDino
             }
         }
 
-        private int GetRandomX(int textureWidth)
+        private int GetRandomX(int cactusNo)
         {
-            return random.Next(ScreenWidth + textureWidth + 10, ScreenWidth + textureWidth + 300);
+            if (cactusNo == 1)
+            {
+                return ScreenWidth + random.Next(350, 500);
+            }
+            else if (cactusNo == 2)
+            {
+                return ScreenWidth + random.Next(350, 500);
+            }
+            else
+            {
+                return ScreenWidth + random.Next(350, 400);
+            }
         }
 
         private void CheckIfTwoCactusesAreClose(int cactusNo)
         {
             if (cactusNo == 1)
             {
-                if (Cactuse1PosRect.X - Cactuse3PosRect.X <= 300)
+                if (Cactuse1PosRect.X - Cactuse3PosRect.X <= 350)
                 {
-                    Cactuse1PosRect.X = Cactuse1PosRect.X + random.Next(200, 400);
+                    Cactuse1PosRect.X = Cactuse1PosRect.X + random.Next(100, 150);
                 }
             }
             if (cactusNo == 2)
             {
-                if (Cactuse2PosRect.X - Cactuse1PosRect.X <= 300)
+                if (Cactuse2PosRect.X - Cactuse1PosRect.X <= 350)
                 {
-                    Cactuse2PosRect.X = Cactuse2PosRect.X + random.Next(200, 400);
+                    Cactuse2PosRect.X = Cactuse2PosRect.X + random.Next(100, 150);
                 }
             }
             if (cactusNo == 3)
             {
-                if (Cactuse3PosRect.X - Cactuse2PosRect.X <= 300)
+                if (Cactuse3PosRect.X - Cactuse2PosRect.X <= 350)
                 {
-                    Cactuse3PosRect.X = Cactuse3PosRect.X + random.Next(200, 400);
+                    Cactuse3PosRect.X = Cactuse3PosRect.X + random.Next(100, 150);
                 }
             }
         }
